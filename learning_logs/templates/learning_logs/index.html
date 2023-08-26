@@ -1,9 +1,23 @@
 {% extends "learning_logs/base.html" %}
 
-{% block content %}
-  {% if user.is_authenticated%}
-    <p style="text-align: center; font-size: 32px;">Hello, {{user.username}}</p>
-  {%endif%}
-<p>Learning log helps you keep track of your learning, for any topic you`re
-    learning about.</p>
-{% endblock content %}
+{% block page_header %}
+  <div class="jumbotron" >
+    {% if user.is_authenticated%}
+    <h1 class="display-4" style="text-align: center;">Hello,{{user.username}}</h1>
+    <p class="lead">New knowledge is still waiting for you! <br> <br> We remind you that our website helps you keep a diary on the topics you are studying. <br>
+       Just add an interesting topic and feed it with new entries.</p>
+    {%else%}
+    <h1 class="display-4" style="text-align: center;">Hello,guest</h1>
+    <p class="lead">Register on our website faster to become the coolest and most advanced smart guy.<br>We`ll help you:</p>
+      <ul class="lead">
+        <li>Securely save your scientific topics</li>
+        <li>Add new entries to your topics</li>
+        <li>Hide your entries from other users</li>
+        <li>And much much more</li>
+      </ul>
+      <p class="lead">We are waiting for you &#59;&#41;</p>
+      <a class="btn btn-lg btn-primary" href="{%url 'users:register'%}" role="button"> Register &raquo;</a>
+    {%endif%}
+  </div>
+  
+{% endblock page_header %}

@@ -1,25 +1,27 @@
 {% extends 'learning_logs/base.html'%}
+{% load bootstrap4%}
+
+{%block page_header%}
+  <h2>{{topic}}</h2>
+{%endblock page_header%}
 
 {% block content %}
 
-  <p>Topic : {{topic}}</p>
-
-  <p>Entries</p>
-  <p>
-    <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
-  </p>
-  <ul>
+  <ul class="list-group">
     {%for entry in entries%}
-      <li>
-        <p>
-          {{entry.date_added|date:'M d, Y H:i' }}
-          <a href="{% url 'learning_logs:edit_entry' entry.id%}" style="font-size:16px">Edit entry</a>
-        </p>
-        <p>{{entry.text|linebreaks}}</p>
-      </li>
+    <li class="list-group-item">
+      <p>
+        {{entry.date_added|date:'M d, Y H:i' }}
+        <a href="{% url 'learning_logs:edit_entry' entry.id%}" style="font-size:16px">Edit entry</a>
+      </p>
+      <p style="word-wrap: break-word; ">{{entry.text}}</p>
+    </li>
     {%empty%}
-      <li>There are no entries for this topic yet</li>
+    <li>There are no entries for this topic yet</li>
     {%endfor%}
   </ul>
-  
+
+  <p>
+    <a class="btn btn-lg btn-primary" href="{%url 'learning_logs:new_entry' topic.id %}" role="button"> Add entry</a>
+  </p>
 {%endblock content%}

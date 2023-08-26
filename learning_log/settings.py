@@ -31,8 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # my application
     'users',
     'learning_logs',
+
+    # other application
+    'bootstrap4',
+    
+    # default application
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
